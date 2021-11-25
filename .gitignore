@@ -15,8 +15,8 @@
 .DS_Store
 node_modules/
 
-.README-template.md
-.style-guide.md
-.README.md
-
+README.md
+README-template.md
+style-guide.md
 images/
+package-lock.json
