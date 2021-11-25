@@ -1,0 +1,19 @@
+{
+  "name": "ip-address-tracker-master",
+  "version": "1.0.0",
+  "description": "rastreador de IPs publicas",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "javascript",
+    "npm",
+    "APIs"
+  ],
+  "author": "Axel Muñoz",
+  "license": "MIT",
+  "dependencies": {
+    "xmlhttprequest": "^1.8.0"
+  }
+}
