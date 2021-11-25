@@ -9260,6 +9260,8 @@ const data = async (url_api,direction_ip) => {
         const city = info.location.city;
         const timeZone = info.location.timezone;
         const isp = info.isp;
+        const latitude = info.location.lat;
+        const longitud = info.location.lng;
 
         const pIp = document.getElementById('ip');
         pIp.innerText = `${ip}`;
@@ -9273,8 +9275,27 @@ const data = async (url_api,direction_ip) => {
         const pIsp = document.getElementById('isp');
         pIsp.innerText = `${isp}`
 
+        drawMap(latitude, longitud);
+
     } catch (error) {
         console.log(error);
     }
+}
+
+const drawMap = (lat, lng) => {
+    var container = L.DomUtil.get('map');
+        if(container != null){
+        container.remove()
+        const reCreateMap = document.getElementById('contain-map');
+        reCreateMap.innerHTML = '<div id="map"></div>'
+    }
+    let mymap = L.map('map').setView([lat, lng], 15);
+
+    let marker = L.marker([lat, lng]).addTo(mymap);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(mymap);
 }
 },{"xmlhttprequest":40}]},{},[41]);
