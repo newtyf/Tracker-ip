@@ -1,6 +1,14 @@
 let XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 const API = 'https://geo.ipify.org/api/v2/country,city?apiKey=at_xOluqnJZrnwhKm4XWF3GH6HI5TUjq&ipAddress=';
 
+let mapDefault = L.map('map').setView([34.04915, -118.09462], 17);
+let marker = L.marker([34.04915, -118.09462]).addTo(mapDefault);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+    minZoom: 3,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(mapDefault);
+
 const trackerIp = () =>{
     const input = document.getElementById('ip-address');
     const IP = input.value;
@@ -43,7 +51,7 @@ const data = async (url_api,direction_ip) => {
         pLocate.innerText = `${country}, ${city}`;
 
         const pTimeZone = document.getElementById('timezone');
-        pTimeZone.innerText = `${timeZone}`
+        pTimeZone.innerText = `UTC${timeZone}`
 
         const pIsp = document.getElementById('isp');
         pIsp.innerText = `${isp}`
@@ -62,12 +70,13 @@ const drawMap = (lat, lng) => {
         const reCreateMap = document.getElementById('contain-map');
         reCreateMap.innerHTML = '<div id="map"></div>'
     }
-    let mymap = L.map('map').setView([lat, lng], 15);
+    let mymap = L.map('map').setView([lat, lng], 17);
 
     let marker = L.marker([lat, lng]).addTo(mymap);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 19,
+    minZoom: 3,
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(mymap);
 }

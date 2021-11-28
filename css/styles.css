@@ -1,3 +1,110 @@
+/* ----- estilos globales ---*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* ------ HTML styles -------*/
+html {
+    font-size: 62.5%;
+}
+
+/* -------- root --------- */
+:root {
+    --very-dark-gray: hsl(0, 0%, 17%);
+    --dark-gray: hsl(0, 3%, 59%);
+    --rubik: 'Rubik', sans-serif;
+}
+
+/* ---- Header Styles ----- */
+.block {
+    height: 40vh;
+}
+
+.header {
+    background-image: url('../images/pattern-bg.png');
+    background-repeat: no-repeat;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1000;
+}
+
+.header .three-data {
+    margin-top: 2rem;
+    margin-bottom: 1.2rem;
+}
+
+.header .title {
+    font-size: 2.6rem;
+    font-family: var(--rubik);
+    color: #fff;
+    text-align: center;
+}
+
+.header .form-search {
+    display: flex;
+    width: 50rem;
+}
+
+.form-search .form-control {
+    width: 45rem;
+    height: 3.9rem;
+    outline: none;
+    font-size: 1.8rem;
+    padding: 2rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border: none;
+}
+
+.form-search .btn {
+    width: 4.3rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border: none;
+    background-color: var(--very-dark-gray);
+    cursor: pointer;
+}
+
+/* ------ container styles -----*/
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.8rem;
+}
+
+.container .list-group {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 12.5rem;
+    background-color: #fff;
+    border-radius: 1.5rem;
+    width: 80%;
+    box-shadow: 0 0 4px 1px var(--very-dark-gray);
+}
+
+.list-group .list-group-item {
+    list-style: none;
+    padding: 3rem;
+    font-family: var(--rubik);
+    font-size: 1.2rem;
+    color: var(--dark-gray);
+}
+
+.list-group-item .data-location {
+    font-size: 2rem;
+    color: var(--very-dark-gray);
+    font-weight: 700;
+    padding-top: 1.5rem;
+}
+
 #map {
     height: 60vh;
 }
