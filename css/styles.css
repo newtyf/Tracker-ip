@@ -19,21 +19,19 @@ html {
 
 /* ---- Header Styles ----- */
 .block {
-    height: 40vh;
-}
-
-.header {
     background-image: url('../images/pattern-bg.png');
     background-repeat: no-repeat;
     background-size: cover;
-    height: 40vh;
+    height: 30vh;
+}
+
+.header {
+    height: 75%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    z-index: 1000;
 }
 
 .header .three-data {
@@ -50,12 +48,11 @@ html {
 
 .header .form-search {
     display: flex;
-    width: 50rem;
 }
 
 .form-search .form-control {
     width: 45rem;
-    height: 3.9rem;
+    height: 5rem;
     outline: none;
     font-size: 1.8rem;
     padding: 2rem;
@@ -79,7 +76,10 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1.8rem;
+    position: absolute;
+    z-index: 1000;
+    top: 20rem;
+
 }
 
 .container .list-group {
@@ -88,8 +88,8 @@ html {
     grid-template-rows: 12.5rem;
     background-color: #fff;
     border-radius: 1.5rem;
-    width: 80%;
-    box-shadow: 0 0 4px 1px var(--very-dark-gray);
+    width: 75%;
+    box-shadow: 0 0 3px var(--very-dark-gray);
 }
 
 .list-group .list-group-item {
@@ -107,6 +107,82 @@ html {
     padding-top: 1.5rem;
 }
 
+#contain-map {
+    height: 70vh;
+}
+
 #map {
-    height: 60vh;
+    height: 100%;
+}
+
+
+/* media queries */
+@media (max-width: 1230px) {
+    .header {
+        height: 50%;
+    }
+    .header .three-data {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .header .title {
+        font-size: 1.8rem;
+    }
+    .container {
+        top: 18%;
+    }
+    .form-search .form-control{
+        height: 3rem;
+        font-size: 1.5rem;
+        padding: 2rem;
+    }
+    .container .list-group {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+    .list-group .list-group-item {
+        padding: 2rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        height: 50%;
+    }
+    .header .title{
+        font-size: 1.5rem;
+    }
+    .header .three-data {
+        margin-top: 1.5rem;
+        margin-bottom: 0rem;
+    }
+    .container {
+        top: 18%;
+    }
+    .header .form-search{
+        width: 75%;
+    }
+    .form-search .form-control{
+        width: 100%;
+        height: 3rem;
+        font-size: 1rem;
+        padding: 1.4rem;
+    }
+    .form-search .btn{
+        width: 3rem;
+    }
+    .container .list-group {
+        text-align: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+    }
+    .list-group .list-group-item {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    .list-group-item .data-location{
+        font-size: 1.2rem;
+        padding-top: .5rem;
+    }
 }
