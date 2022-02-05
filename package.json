@@ -12,8 +12,5 @@
     "APIs"
   ],
   "author": "Axel Muñoz",
-  "license": "MIT",
-  "dependencies": {
-    "xmlhttprequest": "^1.8.0"
-  }
+  "license": "MIT"
 }

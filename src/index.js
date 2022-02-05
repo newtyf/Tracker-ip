@@ -1,6 +1,9 @@
-let XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+// solicito la dependencia de xmlhttprequest
+// let XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+// Declaro una variable con la apu a utilizar
 const API = 'https://geo.ipify.org/api/v2/country,city?apiKey=at_xOluqnJZrnwhKm4XWF3GH6HI5TUjq&ipAddress=';
 
+// Pinto el mapa por defecto, al ingresar a la pagina
 let mapDefault = L.map('map').setView([34.04915, -118.09462], 17);
 let marker = L.marker([34.04915, -118.09462]).addTo(mapDefault);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -9,31 +12,43 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(mapDefault);
 
+// funcion que se llamara cuando se haga click en el boton para solicitar la ubicacion
 const trackerIp = () =>{
     const input = document.getElementById('ip-address');
     const IP = input.value;
     data(API, IP);
 }
 
+// variable que seleccionara el boton a usar
 const button = document.getElementById('search-address');
 button.addEventListener('click', trackerIp)
 
-const fetchData = (url_api) => {
-    return new Promise((resolve, reject) => {
-        const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', url_api, true);
-        xhttp.onreadystatechange = (() => {
-            if(xhttp.readyState === 4) {
-                (xhttp.status === 200)
-                ? resolve(JSON.parse(xhttp.responseText))
-                : reject(new Error('Error', url_api))
-            }
-        })
-        xhttp.send();
-    })
+// funcion que inicia una peticion, verifica si la conexion esta lista y si la peticion fue recibida correctamente
+// const fetchData = (url_api) => {
+//     return new Promise((resolve, reject) => {
+//         const xhttp = new XMLHttpRequest();
+//         xhttp.open('GET', url_api, true);
+//         xhttp.onreadystatechange = (() => {
+//             if(xhttp.readyState === 4) {
+//                 (xhttp.status === 200)
+//                 ? resolve(JSON.parse(xhttp.responseText))
+//                 : reject(new Error('Error', url_api))
+//             }
+//         })
+//         xhttp.send();
+//     })
+// }
+
+const fetchData = async (url_api) => {
+    let rest = await fetch(url_api);
+    let rest_1 = rest.JSON();
+
+    return rest_1;
 }
 
+// funcion que inicia luncion de fetchData y la espera hasta que envie la repsuesta, luego procesa la informacion seleccionando las caracteristicas principales con la cual se obtendra la ubicacion
 const data = async (url_api,direction_ip) => {
+    // recibe los datos
     try {
         const info = await fetchData(`${url_api}${direction_ip}`);
         const ip = info.ip;
@@ -57,12 +72,13 @@ const data = async (url_api,direction_ip) => {
         pIsp.innerText = `${isp}`
 
         drawMap(latitude, longitud);
-
+    // recibe el error si es que hay alguno
     } catch (error) {
         console.log(error);
     }
 }
 
+// funcion que se dedica al dibujado del mapa usando las variables que envia la funcion DATA
 const drawMap = (lat, lng) => {
     var container = L.DomUtil.get('map');
         if(container != null){
