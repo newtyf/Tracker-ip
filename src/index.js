@@ -41,7 +41,7 @@ button.addEventListener('click', trackerIp)
 
 const fetchData = async (url_api) => {
     let rest = await fetch(url_api);
-    let rest_1 = rest.JSON();
+    let rest_1 = rest.json();
 
     return rest_1;
 }
